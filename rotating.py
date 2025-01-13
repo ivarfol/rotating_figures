@@ -61,8 +61,8 @@ def main():
     while True:
         for i in range(600):
             events = pygame.event.get()
-            cube.rotate_x(0.01*pi)
-           # cube.rotate_y(0.01*pi)
+           # cube.rotate_x(0.01*pi)
+            cube.rotate_y(0.01*pi)
             cube.rotate_z(0.01*pi)
             screen.fill(screen_color)
             cube.output(cube.getProjected(fov), screen)
