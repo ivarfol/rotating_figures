@@ -60,17 +60,16 @@ def main():
     screen.fill(screen_color)
     cube = Figure(vertex, edges, (255, 255, 255))
     while True:
-        for i in range(600):
-            events = pygame.event.get()
-           # cube.rotate_x(0.01*pi)
-            cube.rotate_y(0.01*pi)
-            cube.rotate_z(0.01*pi)
-            screen.fill(screen_color)
-            cube.output(cube.getProjected(fov), screen, width, height, scale)
-            for event in events:
-                if event.type == QUIT:
-                    sys.exit(0)
-            sleep(0.05)
+        events = pygame.event.get()
+       # cube.rotate_x(0.01*pi)
+        cube.rotate_y(0.01*pi)
+        cube.rotate_z(0.01*pi)
+        screen.fill(screen_color)
+        cube.output(cube.getProjected(fov), screen, width, height, scale)
+        for event in events:
+            if event.type == QUIT:
+                sys.exit(0)
+        sleep(0.05)
 
 if __name__ == "__main__":
     main()
