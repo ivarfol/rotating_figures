@@ -43,7 +43,8 @@ class Figure():
             projected += [[vertex[0]*fov/(vertex[2]+fov), vertex[1]*fov/(vertex[2]+fov)]]
         return(projected)
 
-    def output(self, projected, screen, width, height, scale):
+    def output(self, fov, screen, width, height, scale):
+        projected = self.getProjected(fov)
         for edge in self.getEdges():
             pygame.draw.line(screen, self.getColor(), (round(projected[edge[0]][0]*scale+width/2), round(projected[edge[0]][1]*scale+height/2)), (round(projected[edge[1]][0]*scale+width/2), round(projected[edge[1]][1]*scale+height/2)), 1)
         pygame.display.flip()
@@ -65,7 +66,7 @@ def main():
         cube.rotate_y(0.01*pi)
         cube.rotate_z(0.01*pi)
         screen.fill(screen_color)
-        cube.output(cube.getProjected(fov), screen, width, height, scale)
+        cube.output(fov, screen, width, height, scale)
         for event in events:
             if event.type == QUIT:
                 sys.exit(0)
