@@ -46,9 +46,9 @@ def main():
     #vertex = [[1, 1, 1], [2, 1, 1], [1, 2, 1], [1, 1, 2], [2, 2, 1], [2, 1, 2], [1, 2, 2], [2, 2, 2]]
     vertex = [[-2, -2, -2], [2, -2, -2], [-2, 2, -2], [-2, -2, 2], [2, 2, -2], [2, -2, 2], [-2, 2, 2], [2, 2, 2]]
     edges = [[0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4], [2, 6], [3, 6], [3, 5], [5, 7], [6, 7], [7, 4]]
-    fov = 0.5
+    fov = -5
     screen_color = (0, 0, 0)
-    screen = pygame.display.set_mode((500,500))
+    screen = pygame.display.set_mode((1000,1000))
     screen.fill(screen_color)
     cube = Figure(vertex, edges, (255, 255, 255))
     cube.output(cube.getProjected(fov), screen)
