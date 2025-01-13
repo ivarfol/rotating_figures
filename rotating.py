@@ -25,11 +25,17 @@ class Figure():
             tmp += [[vertex[0]*cos(a) + vertex[2]*sin(a), vertex[1], vertex[2]*cos(a) - vertex[0]*sin(a)]]
         self.vertices = tmp
 
-    def rotate_x(self):
-        pass
+    def rotate_x(self, a):
+        tmp = []
+        for vertex in self.getVertex():
+            tmp += [[vertex[0], vertex[1]*cos(a) - vertex[2]*sin(a), vertex[2]*cos(a) + vertex[1]*sin(a)]]
+        self.vertices = tmp
 
-    def rotate_z(self):
-        pass
+    def rotate_z(self, a):
+        tmp = []
+        for vertex in self.getVertex():
+            tmp += [[vertex[0]*cos(a) - vertex[1]*sin(a), vertex[1]*cos(a) + vertex[0]*sin(a), vertex[2]]]
+        self.vertices = tmp
 
     def getProjected(self, fov):
         projected = []
@@ -55,6 +61,8 @@ def main():
     while True:
         events = pygame.event.get()
         cube.rotate_y(0.01*pi)
+        #cube.rotate_z(0.01*pi)
+        cube.rotate_x(0.01*pi)
         screen.fill(screen_color)
         cube.output(cube.getProjected(fov), screen)
         for event in events:
