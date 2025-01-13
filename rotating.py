@@ -1,4 +1,4 @@
-from math import cos, sin, ceil
+from math import cos, sin, ceil, pi
 import pygame
 from pygame.locals import QUIT
 from time import sleep
@@ -19,8 +19,11 @@ class Figure():
     def getColor(self):
         return(self.line_color)
 
-    def rotate_y(self):
-        pass
+    def rotate_y(self, a):
+        tmp = []
+        for vertex in self.getVertex():
+            tmp += [[vertex[0]*cos(a) + vertex[2]*sin(a), vertex[1], vertex[2]*cos(a) - vertex[0]*sin(a)]]
+        self.vertices = tmp
 
     def rotate_x(self):
         pass
@@ -36,7 +39,7 @@ class Figure():
 
     def output(self, projected, screen):
         for edge in self.getEdges():
-            pygame.draw.line(screen, self.getColor(), (round(projected[edge[0]][0]*100), round(projected[edge[0]][1]*100)), (round(projected[edge[1]][0]*100), round(projected[edge[1]][1]*100)), 1)
+            pygame.draw.line(screen, self.getColor(), (round(projected[edge[0]][0]*100+200), round(projected[edge[0]][1]*100+200)), (round(projected[edge[1]][0]*100+200), round(projected[edge[1]][1]*100+200)), 1)
         pygame.display.flip()
 
 def main():
@@ -50,9 +53,13 @@ def main():
     cube.output(cube.getProjected(fov), screen)
     while True:
         events = pygame.event.get()
+        cube.rotate_y(0.01*pi)
+        screen.fill(screen_color)
+        cube.output(cube.getProjected(fov), screen)
         for event in events:
             if event.type == QUIT:
                 sys.exit(0)
+        sleep(0.05)
 
 if __name__ == "__main__":
     main()
