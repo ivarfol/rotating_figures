@@ -57,20 +57,13 @@ def main():
     height = 300
     scale = 30
     screen = pygame.display.set_mode((width,height))
-    screen.fill(screen_color)
-    vertex_one = [[-1, -1, -1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1], [1, 1, -1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]]
-    edges_one = [[0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4], [2, 6], [3, 6], [3, 5], [5, 7], [6, 7], [7, 4]]
     cube = Figure(vertex, edges, (255, 255, 255))
-    cube_one = Figure(vertex_one, edges_one, (0, 255, 0))
     while True:
         events = pygame.event.get()
        # cube.rotate_x(0.01*pi)
         cube.rotate_y(0.01*pi)
         cube.rotate_z(0.01*pi)
-        cube_one.rotate_x(0.01*pi)
-        cube_one.rotate_z(0.01*pi)
         screen.fill(screen_color)
-        cube_one.output(fov, screen, width, height, scale)
         cube.output(fov, screen, width, height, scale)
         pygame.display.flip()
         for event in events:
